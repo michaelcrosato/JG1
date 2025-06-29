@@ -1,5 +1,6 @@
 import pygame
 import math
+import random
 from constants import *
 
 class Unit:
@@ -54,12 +55,31 @@ class Unit:
         self.r = target_r
         self.has_moved = True
     
-    def attack(self, target_unit):
-        """Attack target unit"""
+    def attack(self, target_unit, game_state):
+        """Attack target unit with hit chance calculation"""
         if target_unit:
-            target_unit.take_damage(self.damage)
-            self.has_attacked = True
-            return True
+            # Base hit chance is 85%
+            hit_chance = 0.85
+            
+            # Check for Assault Marine interference (sniper penalty)
+            if self.unit_type == "Sniper" and target_unit.player != self.player:
+                # Check if target is adjacent to any enemy Assault units
+                target_neighbors = game_state.grid.get_neighbors(target_unit.q, target_unit.r)
+                for neighbor_q, neighbor_r in target_neighbors:
+                    neighbor_unit = game_state.get_unit_at(neighbor_q, neighbor_r)
+                    if (neighbor_unit and neighbor_unit.unit_type == "Assault" 
+                        and neighbor_unit.player != self.player):
+                        hit_chance *= 0.5  # 50% less chance to hit
+                        break
+            
+            # Roll for hit
+            if random.random() <= hit_chance:
+                target_unit.take_damage(self.damage)
+                self.has_attacked = True
+                return True  # Hit successful
+            else:
+                self.has_attacked = True
+                return False  # Missed
         return False
     
     def take_damage(self, damage):
@@ -145,7 +165,7 @@ class Marine(Unit):
         self.damage = 20
         self.movement_points = 3
         self.max_movement = 3
-        self.attack_range = 1
+        self.attack_range = 2
 
 class Assault(Unit):
     def __init__(self, q, r, player):

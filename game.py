@@ -25,17 +25,25 @@ class Game:
     
     def setup_initial_units(self):
         """Setup initial unit positions"""
-        # Player 1 units (left side)
+        # Player 1 units (left side) - doubled
+        self.add_unit(Marine(1, 1, 1))
         self.add_unit(Marine(2, 2, 1))
         self.add_unit(Marine(3, 3, 1))
+        self.add_unit(Marine(1, 3, 1))
         self.add_unit(Assault(1, 4, 1))
+        self.add_unit(Assault(2, 4, 1))
         self.add_unit(Sniper(2, 5, 1))
+        self.add_unit(Sniper(3, 6, 1))
         
-        # Player 2 units (right side)
+        # Player 2 units (right side) - doubled
+        self.add_unit(Marine(13, 1, 2))
         self.add_unit(Marine(12, 2, 2))
         self.add_unit(Marine(11, 3, 2))
+        self.add_unit(Marine(13, 3, 2))
         self.add_unit(Assault(13, 4, 2))
+        self.add_unit(Assault(12, 4, 2))
         self.add_unit(Sniper(12, 5, 2))
+        self.add_unit(Sniper(11, 6, 2))
     
     def add_unit(self, unit):
         """Add a unit to the game"""
@@ -89,9 +97,9 @@ class Game:
                 # Try to attack
                 target_unit = self.get_unit_at(q, r)
                 if target_unit and self.selected_unit.can_attack(q, r, self):
-                    if self.selected_unit.attack(target_unit):
-                        if target_unit.health <= 0:
-                            self.remove_unit(q, r)
+                    attack_hit = self.selected_unit.attack(target_unit, self)
+                    if attack_hit and target_unit.health <= 0:
+                        self.remove_unit(q, r)
                     self.selected_unit = None
                     self.game_mode = "move"
     
