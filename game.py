@@ -2,7 +2,7 @@ import pygame
 import sys
 from constants import *
 from hexgrid import HexGrid
-from units import Marine, Assault, Sniper
+from units import Marine, Assault, Sniper, Artillery, Tank, AntiVehicle
 
 class Game:
     def __init__(self):
@@ -25,25 +25,33 @@ class Game:
     
     def setup_initial_units(self):
         """Setup initial unit positions"""
-        # Player 1 units (left side) - doubled
+        # Player 1 units (left side) - expanded army
         self.add_unit(Marine(1, 1, 1))
         self.add_unit(Marine(2, 2, 1))
         self.add_unit(Marine(3, 3, 1))
-        self.add_unit(Marine(1, 3, 1))
         self.add_unit(Assault(1, 4, 1))
         self.add_unit(Assault(2, 4, 1))
         self.add_unit(Sniper(2, 5, 1))
         self.add_unit(Sniper(3, 6, 1))
+        self.add_unit(Artillery(1, 7, 1))
+        self.add_unit(Tank(2, 8, 1))
+        self.add_unit(Tank(3, 8, 1))
+        self.add_unit(AntiVehicle(1, 5, 1))
+        self.add_unit(AntiVehicle(3, 5, 1))
         
-        # Player 2 units (right side) - doubled
+        # Player 2 units (right side) - expanded army
         self.add_unit(Marine(13, 1, 2))
         self.add_unit(Marine(12, 2, 2))
         self.add_unit(Marine(11, 3, 2))
-        self.add_unit(Marine(13, 3, 2))
         self.add_unit(Assault(13, 4, 2))
         self.add_unit(Assault(12, 4, 2))
         self.add_unit(Sniper(12, 5, 2))
         self.add_unit(Sniper(11, 6, 2))
+        self.add_unit(Artillery(13, 7, 2))
+        self.add_unit(Tank(12, 8, 2))
+        self.add_unit(Tank(11, 8, 2))
+        self.add_unit(AntiVehicle(13, 5, 2))
+        self.add_unit(AntiVehicle(11, 5, 2))
     
     def add_unit(self, unit):
         """Add a unit to the game"""

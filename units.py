@@ -60,6 +60,7 @@ class Unit:
         if target_unit:
             # Base hit chance is 85%
             hit_chance = 0.85
+            damage = self.damage
             
             # Check for Assault Marine interference (sniper penalty)
             if self.unit_type == "Sniper" and target_unit.player != self.player:
@@ -72,9 +73,15 @@ class Unit:
                         hit_chance *= 0.5  # 50% less chance to hit
                         break
             
+            # Anti-Vehicle Marine bonus damage against vehicles
+            if (self.unit_type == "AntiVehicle" and 
+                target_unit.unit_type in ["Tank", "Artillery"]):
+                damage = int(damage * 2.0)  # Double damage vs vehicles
+                hit_chance = 0.95  # Higher accuracy vs vehicles
+            
             # Roll for hit
             if random.random() <= hit_chance:
-                target_unit.take_damage(self.damage)
+                target_unit.take_damage(damage)
                 self.has_attacked = True
                 return True  # Hit successful
             else:
@@ -173,8 +180,8 @@ class Assault(Unit):
         self.health = 120
         self.max_health = 120
         self.damage = 35
-        self.movement_points = 2
-        self.max_movement = 2
+        self.movement_points = 4
+        self.max_movement = 4
         self.attack_range = 1
 
 class Sniper(Unit):
@@ -185,4 +192,34 @@ class Sniper(Unit):
         self.damage = 40
         self.movement_points = 2
         self.max_movement = 2
-        self.attack_range = 3 
+        self.attack_range = 3
+
+class Artillery(Unit):
+    def __init__(self, q, r, player):
+        super().__init__(q, r, player, "Artillery")
+        self.health = 50
+        self.max_health = 50
+        self.damage = 60
+        self.movement_points = 1
+        self.max_movement = 1
+        self.attack_range = 4
+
+class Tank(Unit):
+    def __init__(self, q, r, player):
+        super().__init__(q, r, player, "Tank")
+        self.health = 150
+        self.max_health = 150
+        self.damage = 45
+        self.movement_points = 2
+        self.max_movement = 2
+        self.attack_range = 2
+
+class AntiVehicle(Unit):
+    def __init__(self, q, r, player):
+        super().__init__(q, r, player, "AntiVehicle")
+        self.health = 70
+        self.max_health = 70
+        self.damage = 30
+        self.movement_points = 3
+        self.max_movement = 3
+        self.attack_range = 2 

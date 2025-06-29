@@ -9,12 +9,15 @@ A turn-based strategy game with hexagonal grid system, featuring a futuristic sc
 - **Hexagonal Grid System**: Tactical gameplay with hexagonal tiles for more strategic movement options
 - **Turn-Based Combat**: Players alternate turns with movement and attack phases
 - **Advanced Combat System**: Hit chance mechanics with special unit interactions
-- **Multiple Unit Types**: 
+- **Six Distinct Unit Types**: 
   - **Marines**: Balanced units with moderate health, damage, and 2-hex attack range
-  - **Assault**: Heavy units with high health, damage, and sniper disruption ability
+  - **Assault**: Fast heavy units with high health, damage, increased mobility, and sniper disruption
   - **Snipers**: Long-range units with high damage but reduced accuracy near Assault units
+  - **Artillery**: Extreme long-range bombardment units with massive damage but very fragile
+  - **Tanks**: Heavy armored units with high durability and decent firepower
+  - **Anti-Vehicle**: Specialized hunters that excel at destroying Tanks and Artillery
 - **Hot-Seat Multiplayer**: Two players can play on the same computer
-- **Larger Battles**: Each player starts with 8 units (doubled from original)
+- **Large-Scale Battles**: Each player starts with 12 units across 6 different types
 - **Sci-Fi Theme**: Futuristic aesthetic with cyan/blue color scheme
 - **Visual Feedback**: Movement ranges, attack ranges, and unit health bars
 
@@ -65,8 +68,11 @@ Eliminate all enemy units to win the game.
 | Unit Type | Health | Damage | Movement | Attack Range | Role | Special Ability |
 |-----------|--------|--------|----------|--------------|------|------------------|
 | Marine    | 80     | 20     | 3        | 2            | Balanced infantry | None |
-| Assault   | 120    | 35     | 2        | 1            | Heavy melee unit | Disrupts enemy snipers |
+| Assault   | 120    | 35     | 4        | 1            | Fast heavy unit | Disrupts enemy snipers |
 | Sniper    | 60     | 40     | 2        | 3            | Long-range support | Reduced accuracy near Assault units |
+| Artillery | 50     | 60     | 1        | 4            | Long-range bombardment | Extreme range, fragile |
+| Tank      | 150    | 45     | 2        | 2            | Heavy armor | High durability |
+| Anti-Vehicle | 70  | 30     | 3        | 2            | Vehicle hunter | 2x damage + 95% accuracy vs Tanks/Artillery |
 
 ### Gameplay Mechanics
 
@@ -89,20 +95,26 @@ Eliminate all enemy units to win the game.
 4. **Combat System**:
    - All attacks have an 85% base hit chance - attacks can miss!
    - **Assault Disruption**: Enemy snipers adjacent to your Assault units have 50% reduced hit chance (42.5% total)
+   - **Anti-Vehicle Specialization**: Anti-Vehicle Marines deal 2x damage to Tanks/Artillery with 95% hit chance
    - Position your Assault units strategically to protect other units from sniper fire
+   - Use Anti-Vehicle Marines to counter enemy armor and artillery
    - Failed attacks still consume the unit's attack for that turn
 
 ### Strategy Tips
 
 - **Positioning**: Use the hexagonal grid to your advantage - units have 6 adjacent hexes instead of 4
 - **Unit Synergy**: Combine different unit types for effective tactics
-  - Use Marines for flexible positioning with improved 2-hex attack range
-  - Use Assault units to tank damage, deal heavy melee damage, AND disrupt enemy snipers
-  - Use Snipers to provide long-range support from safe positions, but keep them away from enemy Assault units
+  - **Marines**: Flexible positioning with 2-hex attack range - solid frontline units
+  - **Assault**: Fast heavy units (4 movement!) - rush enemy positions and disrupt snipers
+  - **Snipers**: Long-range support but vulnerable to Assault unit interference
+  - **Artillery**: Extreme range bombardment (4 hexes) but very fragile - protect them!
+  - **Tanks**: Heavily armored frontline units - can absorb massive damage
+  - **Anti-Vehicle**: Essential for dealing with enemy Tanks and Artillery - 2x damage!
 - **Movement Planning**: Plan your movement carefully - you can move then attack, but not attack then move
-- **Range Advantage**: Snipers can attack from 3 hexes away, Marines from 2 hexes - use this to avoid retaliation
-- **Assault Tactics**: Position Assault units adjacent to enemy units to reduce sniper effectiveness by 50%
-- **Hit Chance**: All attacks have an 85% base hit chance, but snipers near enemy Assault units only have 42.5% hit chance
+- **Range Advantage**: Artillery (4 hex) > Snipers (3 hex) > Marines/Tanks/Anti-Vehicle (2 hex) > Assault (1 hex)
+- **Assault Tactics**: Use their increased 4-hex movement to quickly position and disrupt enemy snipers
+- **Vehicle Warfare**: Anti-Vehicle Marines are crucial - they deal double damage to Tanks and Artillery
+- **Hit Chance**: 85% base, but snipers near Assault units: 42.5%, Anti-Vehicle vs vehicles: 95%
 
 ## File Structure
 
