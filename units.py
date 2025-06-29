@@ -63,7 +63,7 @@ class Unit:
             damage = self.damage
             
             # Check for Assault Marine interference (sniper penalty)
-            if self.unit_type == "Sniper" and target_unit.player != self.player:
+            if self.unit_type == "SN" and target_unit.player != self.player:
                 # Check if target is adjacent to any enemy Assault units
                 target_neighbors = game_state.grid.get_neighbors(target_unit.q, target_unit.r)
                 for neighbor_q, neighbor_r in target_neighbors:
@@ -75,7 +75,7 @@ class Unit:
             
             # Anti-Vehicle Marine bonus damage against vehicles
             if (self.unit_type == "AV" and 
-                target_unit.unit_type in ["Tank", "AR"]):
+                target_unit.unit_type in ["T", "AR"]):
                 damage = int(damage * 2.0)  # Double damage vs vehicles
                 hit_chance = 0.95  # Higher accuracy vs vehicles
             
@@ -166,7 +166,7 @@ class Unit:
 
 class Marine(Unit):
     def __init__(self, q, r, player):
-        super().__init__(q, r, player, "Marine")
+        super().__init__(q, r, player, "MA")
         self.health = 80
         self.max_health = 80
         self.damage = 20
@@ -186,7 +186,7 @@ class Assault(Unit):
 
 class Sniper(Unit):
     def __init__(self, q, r, player):
-        super().__init__(q, r, player, "Sniper")
+        super().__init__(q, r, player, "SN")
         self.health = 60
         self.max_health = 60
         self.damage = 40
@@ -206,7 +206,7 @@ class Artillery(Unit):
 
 class Tank(Unit):
     def __init__(self, q, r, player):
-        super().__init__(q, r, player, "Tank")
+        super().__init__(q, r, player, "T")
         self.health = 150
         self.max_health = 150
         self.damage = 45
