@@ -68,14 +68,14 @@ class Unit:
                 target_neighbors = game_state.grid.get_neighbors(target_unit.q, target_unit.r)
                 for neighbor_q, neighbor_r in target_neighbors:
                     neighbor_unit = game_state.get_unit_at(neighbor_q, neighbor_r)
-                    if (neighbor_unit and neighbor_unit.unit_type == "Assault" 
+                    if (neighbor_unit and neighbor_unit.unit_type == "AM" 
                         and neighbor_unit.player != self.player):
                         hit_chance *= 0.5  # 50% less chance to hit
                         break
             
             # Anti-Vehicle Marine bonus damage against vehicles
-            if (self.unit_type == "AntiVehicle" and 
-                target_unit.unit_type in ["Tank", "Artillery"]):
+            if (self.unit_type == "AV" and 
+                target_unit.unit_type in ["Tank", "AR"]):
                 damage = int(damage * 2.0)  # Double damage vs vehicles
                 hit_chance = 0.95  # Higher accuracy vs vehicles
             
@@ -130,7 +130,7 @@ class Unit:
         
         # Draw unit type indicator
         font = pygame.font.Font(None, 16)
-        text = font.render(self.unit_type[0], True, WHITE)  # First letter of unit type
+        text = font.render(self.unit_type, True, WHITE)  # Full unit type abbreviation
         text_rect = text.get_rect(center=(x, y))
         screen.blit(text, text_rect)
     
@@ -176,7 +176,7 @@ class Marine(Unit):
 
 class Assault(Unit):
     def __init__(self, q, r, player):
-        super().__init__(q, r, player, "Assault")
+        super().__init__(q, r, player, "AM")
         self.health = 120
         self.max_health = 120
         self.damage = 35
@@ -196,7 +196,7 @@ class Sniper(Unit):
 
 class Artillery(Unit):
     def __init__(self, q, r, player):
-        super().__init__(q, r, player, "Artillery")
+        super().__init__(q, r, player, "AR")
         self.health = 50
         self.max_health = 50
         self.damage = 60
@@ -216,7 +216,7 @@ class Tank(Unit):
 
 class AntiVehicle(Unit):
     def __init__(self, q, r, player):
-        super().__init__(q, r, player, "AntiVehicle")
+        super().__init__(q, r, player, "AV")
         self.health = 70
         self.max_health = 70
         self.damage = 30

@@ -19,7 +19,8 @@ A turn-based strategy game with hexagonal grid system, featuring a futuristic sc
 - **Hot-Seat Multiplayer**: Two players can play on the same computer
 - **Large-Scale Battles**: Each player starts with 12 units across 6 different types
 - **Sci-Fi Theme**: Futuristic aesthetic with cyan/blue color scheme
-- **Visual Feedback**: Movement ranges, attack ranges, and unit health bars
+- **Visual Feedback**: Movement ranges, attack ranges, unit health bars, and clear unit identification
+- **Battlefield Clarity**: Units display clear abbreviations (AM=Assault, AV=Anti-Vehicle, AR=Artillery)
 
 ## Installation
 
@@ -65,14 +66,14 @@ Eliminate all enemy units to win the game.
 
 ### Unit Types
 
-| Unit Type | Health | Damage | Movement | Attack Range | Role | Special Ability |
-|-----------|--------|--------|----------|--------------|------|------------------|
-| Marine    | 80     | 20     | 3        | 2            | Balanced infantry | None |
-| Assault   | 120    | 35     | 4        | 1            | Fast heavy unit | Disrupts enemy snipers |
-| Sniper    | 60     | 40     | 2        | 3            | Long-range support | Reduced accuracy near Assault units |
-| Artillery | 50     | 60     | 1        | 4            | Long-range bombardment | Extreme range, fragile |
-| Tank      | 150    | 45     | 2        | 2            | Heavy armor | High durability |
-| Anti-Vehicle | 70  | 30     | 3        | 2            | Vehicle hunter | 2x damage + 95% accuracy vs Tanks/Artillery |
+| Unit Type | Display | Health | Damage | Movement | Attack Range | Role | Special Ability |
+|-----------|---------|--------|--------|----------|--------------|------|------------------|
+| Marine    | M       | 80     | 20     | 3        | 2            | Balanced infantry | None |
+| Assault   | AM      | 120    | 35     | 4        | 1            | Fast heavy unit | Disrupts enemy snipers |
+| Sniper    | S       | 60     | 40     | 2        | 3            | Long-range support | Reduced accuracy near Assault units |
+| Artillery | AR      | 50     | 60     | 1        | 4            | Long-range bombardment | Extreme range, fragile |
+| Tank      | T       | 150    | 45     | 2        | 2            | Heavy armor | High durability |
+| Anti-Vehicle | AV   | 70     | 30     | 3        | 2            | Vehicle hunter | 2x damage + 95% accuracy vs Tanks/Artillery |
 
 ### Gameplay Mechanics
 
@@ -104,12 +105,12 @@ Eliminate all enemy units to win the game.
 
 - **Positioning**: Use the hexagonal grid to your advantage - units have 6 adjacent hexes instead of 4
 - **Unit Synergy**: Combine different unit types for effective tactics
-  - **Marines**: Flexible positioning with 2-hex attack range - solid frontline units
-  - **Assault**: Fast heavy units (4 movement!) - rush enemy positions and disrupt snipers
-  - **Snipers**: Long-range support but vulnerable to Assault unit interference
-  - **Artillery**: Extreme range bombardment (4 hexes) but very fragile - protect them!
-  - **Tanks**: Heavily armored frontline units - can absorb massive damage
-  - **Anti-Vehicle**: Essential for dealing with enemy Tanks and Artillery - 2x damage!
+  - **Marines (M)**: Flexible positioning with 2-hex attack range - solid frontline units
+  - **Assault (AM)**: Fast heavy units (4 movement!) - rush enemy positions and disrupt snipers
+  - **Snipers (S)**: Long-range support but vulnerable to Assault unit interference
+  - **Artillery (AR)**: Extreme range bombardment (4 hexes) but very fragile - protect them!
+  - **Tanks (T)**: Heavily armored frontline units - can absorb massive damage
+  - **Anti-Vehicle (AV)**: Essential for dealing with enemy Tanks and Artillery - 2x damage!
 - **Movement Planning**: Plan your movement carefully - you can move then attack, but not attack then move
 - **Range Advantage**: Artillery (4 hex) > Snipers (3 hex) > Marines/Tanks/Anti-Vehicle (2 hex) > Assault (1 hex)
 - **Assault Tactics**: Use their increased 4-hex movement to quickly position and disrupt enemy snipers
