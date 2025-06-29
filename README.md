@@ -15,7 +15,7 @@ A turn-based strategy game with hexagonal grid system, featuring a futuristic sc
   - **Snipers**: Long-range units with high damage but reduced accuracy near Assault units
   - **Artillery**: Extreme long-range bombardment units with massive damage but very fragile
   - **Tanks**: Heavy armored units with high durability and decent firepower
-  - **Anti-Vehicle**: Specialized hunters that excel at destroying Tanks and Artillery
+  - **Anti-Vehicle**: Vehicle specialists that excel vs Tanks/Artillery but struggle vs infantry
 - **Hot-Seat Multiplayer**: Two players can play on the same computer
 - **Large-Scale Battles**: Each player starts with 12 units across 6 different types
 - **Sci-Fi Theme**: Futuristic aesthetic with cyan/blue color scheme
@@ -73,7 +73,7 @@ Eliminate all enemy units to win the game.
 | Sniper    | SN      | 60     | 40     | 2        | 3            | Long-range support | Reduced accuracy near Assault units |
 | Artillery | AR      | 50     | 60     | 1        | 4            | Long-range bombardment | Extreme range, fragile |
 | Tank      | T       | 150    | 45     | 2        | 2            | Heavy armor | High durability |
-| Anti-Vehicle | AV   | 70     | 30     | 3        | 2            | Vehicle hunter | 2x damage + 95% accuracy vs Tanks/Artillery |
+| Anti-Vehicle | AV   | 70     | 30     | 3        | 2            | Vehicle specialist | 2x damage + 95% accuracy vs vehicles; 50% accuracy vs infantry |
 
 ### Gameplay Mechanics
 
@@ -96,9 +96,11 @@ Eliminate all enemy units to win the game.
 4. **Combat System**:
    - All attacks have an 85% base hit chance - attacks can miss!
    - **Assault Disruption**: Enemy snipers adjacent to your Assault units have 50% reduced hit chance (42.5% total)
-   - **Anti-Vehicle Specialization**: Anti-Vehicle Marines deal 2x damage to Tanks/Artillery with 95% hit chance
+   - **Anti-Vehicle Specialization**: 
+     - vs Vehicles (Tanks/Artillery): 2x damage + 95% hit chance
+     - vs Infantry (Marines/Assault/Snipers): 42.5% hit chance (50% penalty)
    - Position your Assault units strategically to protect other units from sniper fire
-   - Use Anti-Vehicle Marines to counter enemy armor and artillery
+   - Use Anti-Vehicle Marines specifically against enemy armor and artillery - they're weak vs infantry!
    - Failed attacks still consume the unit's attack for that turn
 
 ### Strategy Tips
@@ -110,12 +112,13 @@ Eliminate all enemy units to win the game.
   - **Snipers (SN)**: Long-range support but vulnerable to Assault unit interference
   - **Artillery (AR)**: Extreme range bombardment (4 hexes) but very fragile - protect them!
   - **Tanks (T)**: Heavily armored frontline units - can absorb massive damage
-  - **Anti-Vehicle (AV)**: Essential for dealing with enemy Tanks and Artillery - 2x damage!
+  - **Anti-Vehicle (AV)**: Specialists vs vehicles (2x damage) but weak vs infantry (50% hit chance penalty)
 - **Movement Planning**: Plan your movement carefully - you can move then attack, but not attack then move
 - **Range Advantage**: Artillery (4 hex) > Snipers (3 hex) > Marines/Tanks/Anti-Vehicle (2 hex) > Assault (1 hex)
 - **Assault Tactics**: Use their increased 4-hex movement to quickly position and disrupt enemy snipers
-- **Vehicle Warfare**: Anti-Vehicle Marines are crucial - they deal double damage to Tanks and Artillery
-- **Hit Chance**: 85% base, but snipers near Assault units: 42.5%, Anti-Vehicle vs vehicles: 95%
+- **Vehicle Warfare**: Anti-Vehicle Marines are specialists - excellent vs vehicles but poor vs infantry
+- **Tactical Specialization**: Use AV units against T/AR, but protect them from enemy infantry
+- **Hit Chance**: 85% base, snipers near AM: 42.5%, AV vs vehicles: 95%, AV vs infantry: 42.5%
 
 ## File Structure
 

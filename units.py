@@ -73,11 +73,15 @@ class Unit:
                         hit_chance *= 0.5  # 50% less chance to hit
                         break
             
-            # Anti-Vehicle Marine bonus damage against vehicles
-            if (self.unit_type == "AV" and 
-                target_unit.unit_type in ["T", "AR"]):
-                damage = int(damage * 2.0)  # Double damage vs vehicles
-                hit_chance = 0.95  # Higher accuracy vs vehicles
+            # Anti-Vehicle Marine specialization
+            if self.unit_type == "AV":
+                if target_unit.unit_type in ["T", "AR"]:
+                    # Bonus vs vehicles
+                    damage = int(damage * 2.0)  # Double damage vs vehicles
+                    hit_chance = 0.95  # Higher accuracy vs vehicles
+                elif target_unit.unit_type in ["MA", "AM", "SN"]:
+                    # Penalty vs infantry
+                    hit_chance *= 0.5  # 50% less chance to hit infantry
             
             # Roll for hit
             if random.random() <= hit_chance:
